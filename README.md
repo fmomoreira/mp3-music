@@ -10,6 +10,11 @@
 
 Um elegante player de música desenvolvido com React Native e Expo, oferecendo uma interface moderna e intuitiva para reprodução de músicas MP3.
 
+### 👨‍💻 Criador e Idealizador
+
+**Felipe Moreira**
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Felipe%20Moreira-blue.svg)](https://www.linkedin.com/in/felipemoreirafrontend/)
+
 ## ✨ Funcionalidades
 
 - 📱 Interface moderna com tema escuro
@@ -84,5 +89,5 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou env
 ---
 
 <div align="center">
-Feito com ❤️ usando React Native e Expo
+Feito com ❤️ por <a href="https://www.linkedin.com/in/felipemoreirafrontend/">Felipe Moreira</a> usando React Native e Expo
 </div>
