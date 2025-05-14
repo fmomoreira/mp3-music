@@ -1,50 +1,88 @@
-# Welcome to your Expo app 👋
+# 🎵 Music Player App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+<div align="center">
 
-## Get started
+[![Made with Expo](https://img.shields.io/badge/Made%20with-Expo-blue.svg)](https://expo.dev/)
+[![Made with React Native](https://img.shields.io/badge/Made%20with-React%20Native-purple.svg)](https://reactnative.dev/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-1. Install dependencies
+</div>
 
-   ```bash
-   npm install
-   ```
+Um elegante player de música desenvolvido com React Native e Expo, oferecendo uma interface moderna e intuitiva para reprodução de músicas MP3.
 
-2. Start the app
+## ✨ Funcionalidades
 
-   ```bash
-   npx expo start
-   ```
+- 📱 Interface moderna com tema escuro
+- 🎵 Importação de músicas MP3
+- ⏯️ Controles de reprodução (play/pause)
+- ⏭️ Navegação entre músicas (anterior/próxima)
+- 📊 Barra de progresso visual
+- ⏲️ Display de tempo em HH:MM:SS
+- 🔄 Navegação circular na playlist
 
-In the output, you'll find options to open the app in a
+## 🚀 Como Instalar
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Pré-requisitos
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- [Node.js](https://nodejs.org/) (v14 ou superior)
+- [Expo CLI](https://docs.expo.dev/get-started/installation/)
+- [Git](https://git-scm.com/)
 
-## Get a fresh project
+### Passo a Passo
 
-When you're ready, run:
-
+1. Clone o repositório:
 ```bash
-npm run reset-project
+git clone [URL_DO_SEU_REPOSITORIO]
+cd meu-player-mp3
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Instale as dependências:
+```bash
+npm install
+```
 
-## Learn more
+3. Inicie o projeto:
+```bash
+npx expo start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## 📱 Como Usar
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+1. **Importar Músicas**
+   - Abra o aplicativo
+   - Clique no botão "Importar Música"
+   - Selecione um arquivo MP3 do seu dispositivo
 
-## Join the community
+2. **Reproduzir Músicas**
+   - Clique em uma música da lista para começar a reprodução
+   - Use os controles de reprodução na tela do player:
+     - ⏮️ Botão anterior: Volta para a música anterior
+     - ⏯️ Botão play/pause: Inicia ou pausa a reprodução
+     - ⏭️ Botão próximo: Avança para a próxima música
 
-Join our community of developers creating universal apps.
+3. **Navegação**
+   - Use a barra inferior para alternar entre a lista de músicas e o player
+   - Acompanhe o progresso da música pela barra visual e o display de tempo
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 🛠️ Tecnologias Utilizadas
+
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.dev/)
+- [Expo Router](https://docs.expo.dev/router/introduction/)
+- [Expo AV](https://docs.expo.dev/versions/latest/sdk/av/)
+- [Expo Document Picker](https://docs.expo.dev/versions/latest/sdk/document-picker/)
+- [Expo FileSystem](https://docs.expo.dev/versions/latest/sdk/filesystem/)
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 🤝 Contribuindo
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request.
+
+---
+
+<div align="center">
+Feito com ❤️ usando React Native e Expo
+</div>

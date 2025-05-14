@@ -1,75 +1,89 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, Button, StyleSheet, Text } from 'react-native';
+import MusicList from '@/components/MusicList';
+import * as DocumentPicker from 'expo-document-picker';
+import * as FileSystem from 'expo-file-system';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+const MUSIC_DIR = FileSystem.documentDirectory + 'musicas/';
 
-export default function HomeScreen() {
+export default function App() {
+  const [refreshTrigger, setRefreshTrigger] = React.useState(0);
+
+
+
+
+  const importarMusica = async () => {
+    console.log('Iniciando importação de música...');
+    const result = await DocumentPicker.getDocumentAsync({
+      type: 'audio/mpeg',
+      copyToCacheDirectory: true,
+    });
+
+    console.log('Resultado da seleção:', result);
+
+    if (!result.canceled && result.assets && result.assets.length > 0) {
+      const asset = result.assets[0];
+      const fileName = asset.name;
+      const destPath = MUSIC_DIR + fileName;
+
+      console.log('Arquivo selecionado:', {
+        nome: fileName,
+        tamanho: asset.size,
+        tipo: asset.mimeType,
+        origem: asset.uri,
+        destino: destPath
+      });
+
+      const dirInfo = await FileSystem.getInfoAsync(MUSIC_DIR);
+      if (!dirInfo.exists) {
+        console.log('Criando diretório:', MUSIC_DIR);
+        await FileSystem.makeDirectoryAsync(MUSIC_DIR, { intermediates: true });
+      }
+
+      console.log('Copiando arquivo para:', destPath);
+      await FileSystem.copyAsync({
+        from: asset.uri,
+        to: destPath,
+      });
+
+      // Verifica se o arquivo foi copiado corretamente
+      const fileInfo = await FileSystem.getInfoAsync(destPath);
+      console.log('Arquivo copiado:', fileInfo);
+
+      console.log('Música importada com sucesso!');
+      alert('Música importada com sucesso!');
+      setRefreshTrigger(prev => prev + 1); // Força atualização da lista
+    }
+  };
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Button title="Importar Música" onPress={importarMusica} />
+      </View>
+
+      <Text style={styles.title}>Lista de músicas:</Text>
+      <MusicList refreshKey={refreshTrigger} />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: { 
+    flex: 1, 
+    paddingTop: 50,
+    backgroundColor: '#1a1a1a'
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  header: {
+    paddingHorizontal: 20,
+    marginBottom: 20
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  title: { 
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginLeft: 20,
+    marginBottom: 10
   },
+
 });
